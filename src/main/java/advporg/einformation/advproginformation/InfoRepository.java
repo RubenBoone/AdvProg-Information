@@ -12,4 +12,5 @@ public interface InfoRepository extends MongoRepository<Information, String> {
     List<Information> findAllByOrderByScoreDesc();
     List<Information> findAllByOrderByBuildYearDesc();
     List<Information> findAllByOrderByBuildYearAsc();
+    List<Information> findAllByEntryFeeIsLessThan(double entryFee);
 }

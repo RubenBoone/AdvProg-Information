@@ -73,6 +73,11 @@ public class InfoController {
         return  infoRepository.findAllByOrderByBuildYearAsc();
     }
 
+    @GetMapping("info/price/{entryFee}")
+    public List<Information> getPrice(@PathVariable double entryFee){
+        return  infoRepository.findAllByEntryFeeIsLessThan(entryFee);
+    }
+
 
     @PostMapping("/info")
     public Information addInformation(@RequestBody Information info){
