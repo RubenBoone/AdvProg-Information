@@ -60,17 +60,17 @@ public class InfoController {
 
     @GetMapping("info/top")
     public List<Information> getTop(){
-        return  infoRepository.findAllByOrderByScoreAsc();
+        return  infoRepository.findAllByOrderByScoreDesc();
     }
 
     @GetMapping("info/new")
     public List<Information> getNewest(){
-        return  infoRepository.findAllByOrderByBuildYearAsc();
+        return  infoRepository.findAllByOrderByBuildYearDesc();
     }
 
     @GetMapping("info/old")
     public List<Information> getOldest(){
-        return  infoRepository.findAllByOrderByBuildYearDesc();
+        return  infoRepository.findAllByOrderByBuildYearAsc();
     }
 
 
