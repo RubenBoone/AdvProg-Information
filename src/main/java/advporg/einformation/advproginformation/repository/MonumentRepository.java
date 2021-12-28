@@ -1,4 +1,4 @@
-package advporg.einformation.advproginformation;
+package advporg.einformation.advproginformation.repository;
 
 import advporg.einformation.advproginformation.model.Monument;
 import org.springframework.data.mongodb.repository.MongoRepository;

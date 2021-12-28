@@ -1,6 +1,6 @@
 package advporg.einformation.advproginformation.controller;
 
-import advporg.einformation.advproginformation.MonumentRepository;
+import advporg.einformation.advproginformation.repository.MonumentRepository;
 import advporg.einformation.advproginformation.model.Monument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -34,12 +33,12 @@ public class MonumentController {
     @Autowired
     private MonumentRepository monumentRepository;
 
-    @GetMapping("/info/{monuCode}")
+    @GetMapping("/monuments/{monuCode}")
     public Monument getInformationByMonuCode(@PathVariable String monuCode){
         return monumentRepository.findMonumentByMonuCode(monuCode);
     }
 
-    @GetMapping("/info/buildyear/{year}")
+    @GetMapping("/monuments/buildyear/{year}")
     public List<Monument> getInformationByBuildYear(@PathVariable int year){
 
         Date date = new Date();
@@ -48,29 +47,24 @@ public class MonumentController {
         return monumentRepository.findMonumentByBuildYear(date);
     }
 
-    @GetMapping("info/top")
-    public List<Monument> getTop(){
-        return  monumentRepository.findAllByOrderByScoreDesc();
-    }
-
-    @GetMapping("info/new")
+    @GetMapping("monuments/new")
     public List<Monument> getNewest(){
         return  monumentRepository.findAllByOrderByBuildYearDesc();
     }
 
-    @GetMapping("info/old")
+    @GetMapping("monuments/old")
     public List<Monument> getOldest(){
         return  monumentRepository.findAllByOrderByBuildYearAsc();
     }
 
 
-    @PostMapping("/info")
+    @PostMapping("/monuments")
     public Monument addInformation(@RequestBody Monument info){
         monumentRepository.save(info);
         return info;
     }
 
-    @PutMapping("/info")
+    @PutMapping("/monuments")
     public Monument updateInfo(@RequestBody Monument updatedInfo){
         Monument retrievedInfo = monumentRepository.findMonumentByMonuCode(
                 updatedInfo.getMonuCode());
@@ -84,7 +78,7 @@ public class MonumentController {
         return retrievedInfo;
     }
 
-    @DeleteMapping("/info/{monuCode}")
+    @DeleteMapping("/monuments/{monuCode}")
     public ResponseEntity deleteInfo(@PathVariable String monuCode){
         Monument info = monumentRepository.findMonumentByMonuCode(monuCode);
         if (info != null){
