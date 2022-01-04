@@ -4,13 +4,7 @@ import advporg.einformation.advproginformation.repository.MonumentRepository;
 import advporg.einformation.advproginformation.model.Monument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import java.util.Date;
@@ -44,12 +38,8 @@ public class MonumentController {
     }
 
     @GetMapping("/monuments/buildyear/{year}")
-    public List<Monument> getMonumentByBuildYear(@PathVariable int year){
-
-        Date date = new Date();
-        date.setYear(year);
-
-        return monumentRepository.findMonumentByBuildYear(date);
+    public List<Monument> getMonumentByBuildYear(@PathVariable String year){
+        return monumentRepository.findMonumentByBuildYear(year);
     }
 
     @GetMapping("monuments/new")
@@ -64,30 +54,31 @@ public class MonumentController {
 
 
     @PostMapping("/monuments")
-    public Monument addMonument(@RequestBody Monument info){
-        monumentRepository.save(info);
-        return info;
+    public Monument addMonument(@RequestBody Monument monument){
+        monumentRepository.save(monument);
+        return monument;
     }
 
     @PutMapping("/monuments")
-    public Monument updateMonument(@RequestBody Monument updatedInfo){
-        Monument retrievedInfo = monumentRepository.findMonumentByMonuCode(
-                updatedInfo.getMonuCode());
+    public Monument updateMonument(@RequestBody Monument updatedMonument){
+        Monument retrievedMonument = monumentRepository.findMonumentByMonuCode(updatedMonument.getMonuCode());
 
-        retrievedInfo.setMonuCode(updatedInfo.getMonuCode());
-        retrievedInfo.setBuildYear(updatedInfo.getBuildYear());
-        retrievedInfo.setScore(updatedInfo.getScore());
-        retrievedInfo.setLocation(updatedInfo.getLocation());
-        retrievedInfo.setName(updatedInfo.getName());
+        retrievedMonument.setMonuCode(updatedMonument.getMonuCode());
+        retrievedMonument.setBuildYear(updatedMonument.getBuildYear());
+        retrievedMonument.setScore(updatedMonument.getScore());
+        retrievedMonument.setLocation(updatedMonument.getLocation());
+        retrievedMonument.setName(updatedMonument.getName());
 
-        return retrievedInfo;
+        return retrievedMonument;
     }
 
     @DeleteMapping("/monuments/{monuCode}")
-    public ResponseEntity<Monument> deleteInfo(@PathVariable String monuCode){
-        Monument info = monumentRepository.findMonumentByMonuCode(monuCode);
-        if (info != null){
-            monumentRepository.delete(info);
+
+    public ResponseEntity deleteMonument(@PathVariable String monuCode){
+        Monument monument = monumentRepository.findMonumentByMonuCode(monuCode);
+        if (monument != null){
+            monumentRepository.delete(monument);
+
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.notFound().build();
