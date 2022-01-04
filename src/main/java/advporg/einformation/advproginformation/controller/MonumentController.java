@@ -21,9 +21,9 @@ public class MonumentController {
 
     @PostConstruct void fillDb(){
         if (monumentRepository.count() == 0){
-            monumentRepository.save(new Monument("1", "Atomium", "BE", "BE19580318", "1958",3.5));
-            monumentRepository.save(new Monument("2", "Eiffel tower", "FR", "FR18890331", "1889",4));
-            monumentRepository.save(new Monument("3","Statue of Liberty", "US", "US18860901", "1886",3.8));
+            monumentRepository.save(new Monument("1",  "BE19580318","Atomium", "BE", "1958",3.5));
+            monumentRepository.save(new Monument("2",  "FR18890331","Eiffel tower", "FR", "1889",4));
+            monumentRepository.save(new Monument("3", "US18860901","Statue of Liberty", "US", "1886",3.8));
         }
 
         System.out.println("Info test: " + monumentRepository.findMonumentByMonuCode("BE19580318").getName());
@@ -32,6 +32,11 @@ public class MonumentController {
 
     @Autowired
     private MonumentRepository monumentRepository;
+
+    @GetMapping("/monuments")
+    public List<Monument> getMonuments(){
+        return monumentRepository.findAll();
+    }
 
     @GetMapping("/monuments/{monuCode}")
     public Monument getMonumentByMonuCode(@PathVariable String monuCode){

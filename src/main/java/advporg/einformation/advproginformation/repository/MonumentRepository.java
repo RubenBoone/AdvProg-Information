@@ -9,7 +9,6 @@ import java.util.List;
 public interface MonumentRepository extends MongoRepository<Monument, String> {
     Monument findMonumentByMonuCode(String monuCode);
     List<Monument> findMonumentByBuildYear(Date buildYear);
-    List<Monument> findAllByOrderByScoreDesc();
     List<Monument> findAllByOrderByBuildYearDesc();
     List<Monument> findAllByOrderByBuildYearAsc();
 }
