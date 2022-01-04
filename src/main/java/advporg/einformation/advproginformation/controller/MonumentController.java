@@ -84,7 +84,7 @@ public class MonumentController {
     }
 
     @DeleteMapping("/monuments/{monuCode}")
-    public ResponseEntity deleteInfo(@PathVariable String monuCode){
+    public ResponseEntity<Monument> deleteInfo(@PathVariable String monuCode){
         Monument info = monumentRepository.findMonumentByMonuCode(monuCode);
         if (info != null){
             monumentRepository.delete(info);
