@@ -73,10 +73,12 @@ public class MonumentController {
     }
 
     @DeleteMapping("/monuments/{monuCode}")
+
     public ResponseEntity deleteMonument(@PathVariable String monuCode){
         Monument monument = monumentRepository.findMonumentByMonuCode(monuCode);
         if (monument != null){
             monumentRepository.delete(monument);
+
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.notFound().build();
