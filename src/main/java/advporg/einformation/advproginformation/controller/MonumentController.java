@@ -34,12 +34,12 @@ public class MonumentController {
     private MonumentRepository monumentRepository;
 
     @GetMapping("/monuments/{monuCode}")
-    public Monument getInformationByMonuCode(@PathVariable String monuCode){
+    public Monument getMonumentByMonuCode(@PathVariable String monuCode){
         return monumentRepository.findMonumentByMonuCode(monuCode);
     }
 
     @GetMapping("/monuments/buildyear/{year}")
-    public List<Monument> getInformationByBuildYear(@PathVariable int year){
+    public List<Monument> getMonumentByBuildYear(@PathVariable int year){
 
         Date date = new Date();
         date.setYear(year);
@@ -59,13 +59,13 @@ public class MonumentController {
 
 
     @PostMapping("/monuments")
-    public Monument addInformation(@RequestBody Monument info){
+    public Monument addMonument(@RequestBody Monument info){
         monumentRepository.save(info);
         return info;
     }
 
     @PutMapping("/monuments")
-    public Monument updateInfo(@RequestBody Monument updatedInfo){
+    public Monument updateMonument(@RequestBody Monument updatedInfo){
         Monument retrievedInfo = monumentRepository.findMonumentByMonuCode(
                 updatedInfo.getMonuCode());
 
@@ -79,7 +79,7 @@ public class MonumentController {
     }
 
     @DeleteMapping("/monuments/{monuCode}")
-    public ResponseEntity deleteInfo(@PathVariable String monuCode){
+    public ResponseEntity deleteMonument(@PathVariable String monuCode){
         Monument info = monumentRepository.findMonumentByMonuCode(monuCode);
         if (info != null){
             monumentRepository.delete(info);
