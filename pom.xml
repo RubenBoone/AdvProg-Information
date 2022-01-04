@@ -11,7 +11,7 @@
     <groupId>advporg.einformation</groupId>
     <artifactId>AdvProg-Information</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>AdvProg-Monument</name>
+    <name>AdvProg-Information</name>
     <description>AdvProg-Information</description>
     <properties>
         <java.version>11</java.version>
