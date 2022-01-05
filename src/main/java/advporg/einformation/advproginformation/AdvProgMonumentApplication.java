@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AdvProgInformationApplication {
+public class AdvProgMonumentApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AdvProgInformationApplication.class, args);
+        SpringApplication.run(AdvProgMonumentApplication.class, args);
     }
 
 }
