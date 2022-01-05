@@ -20,7 +20,7 @@ public class MonumentController {
             monumentRepository.save(new Monument("3", "US18860901","Statue of Liberty", "US", "1886",3.8));
         }
 
-        System.out.println("Info test: " + monumentRepository.findMonumentByMonuCode("BE19580318").getName());
+//        System.out.println("Info test: " + monumentRepository.findMonumentByMonuCode("BE19580318").getName());
 
     }
 
