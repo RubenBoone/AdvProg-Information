@@ -69,6 +69,8 @@ public class MonumentController {
         retrievedMonument.setLocation(updatedMonument.getLocation());
         retrievedMonument.setName(updatedMonument.getName());
 
+        monumentRepository.save(retrievedMonument);
+
         return retrievedMonument;
     }
 
